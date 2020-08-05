@@ -1,6 +1,10 @@
+//: [Previous](@previous)
+
+import Foundation
+
 import UIKit
 
-class Solution {
+class Week1 {
 //    49. Group Anagrams
 //    https://leetcode.com/problems/group-anagrams/
     func groupAnagrams(_ strs: [String]) -> [[String]] {
@@ -119,5 +123,63 @@ class Solution {
         }
         
         nums = result
+    }
+}
+
+
+public class TreeNode {
+    public var val: Int
+    public var left: TreeNode?
+    public var right: TreeNode?
+    public init() { self.val = 0; self.left = nil; self.right = nil; }
+    public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+    public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+        self.val = val
+        self.left = left
+        self.right = right
+     }
+}
+
+//  Definition for singly-linked list.
+public class ListNode {
+    public var val: Int
+    public var next: ListNode?
+    public init() { self.val = 0; self.next = nil; }
+    public init(_ val: Int) { self.val = val; self.next = nil; }
+    public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+ }
+
+class MinStack {
+
+    var stack: [Int] = []
+    var minStack: [Int] = []
+    
+    init() {
+    }
+    
+    func push(_ x: Int) {
+        stack.append(x)
+        if let lastItem = minStack.last {
+            if lastItem > x {
+                minStack.append(x)
+            } else {
+                minStack.append(lastItem)
+            }
+        } else {
+            minStack.append(x)
+        }
+    }
+    
+    func pop() {
+        stack.popLast()
+        minStack.popLast()
+    }
+    
+    func top() -> Int {
+        return stack.last ?? -1
+    }
+    
+    func getMin() -> Int {
+        return minStack.last ?? -1
     }
 }
